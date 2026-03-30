@@ -39,8 +39,6 @@ async def check_slots() -> str:
 
 
 @function_tool
-
-            
 async def book_appointment(
     patient_name: str,
     animal_type: str,
@@ -57,7 +55,6 @@ async def book_appointment(
         appointment_time: Appointment time in HH:MM format
     """
     today = date.today().isoformat()
-    print(f"Booking: {patient_name}, {animal_type}, {issue}, {appointment_time}, {today}")
     try:
         async with httpx.AsyncClient() as client:
             response = await client.post(
@@ -146,8 +143,6 @@ async def entrypoint(ctx: JobContext):
 
     await asyncio.Future()
 
+
 if __name__ == "__main__":
-    cli.run_app(WorkerOptions(
-        entrypoint_fnc=entrypoint,
-        agent_name="dr-paws"
-    ))
+    cli.run_app(WorkerOptions(entrypoint_fnc=entrypoint))
